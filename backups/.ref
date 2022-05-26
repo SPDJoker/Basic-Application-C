@@ -1,0 +1,52 @@
+# Compiler Settings
+CC 				:= clang
+
+# Paths
+ROOTDIR			:= .
+BUILDDIR		:= ./bin
+LINKERDIR		:= ./linker
+SOURCEDIR		:= ./src
+
+
+# App Information
+BUILDNAME		:= TEST
+
+TARGET 			:= $(BUILDDIR)/$(BUILDNAME)
+SOURCE			:= $(SOURCEDIR)/%.c
+OBJECT			:= $(BUILDDIR)/%.o
+
+SOURCES 		:= $(shell find $(SOURCEDIR) -name "*.c")
+OBJECTS			:= $(subst $(SOURCEDIR),$(BUILDDIR),$(SOURCES:.c=.o))
+
+
+#$(addsuffix /inc/,$(addprefix -I,$(LINKERDIR)/*))
+INCLUDES		:= $(LINKERDIR)/GLEW/inc/glew.h
+LIBRARIES		:= $(addsuffix /inc/,$(addprefix -L,$(LINKERDIR)/*))
+
+# Dependency Settings
+DEPENDENCIES		:= $(OBJECTS:.o=.d)
+-include $(DEPENDENCIES)
+
+CFLAGS 			:= -Wall -Werror $(INCLUDES)
+LDFLAGS			:= -Wall -Werror $(LIBRARIES)
+DEPFLAGS 		= -MMD -MF $(@:.o=.d)
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CC) $(LDFLAGS) -o $@ $^
+
+$(OBJECT): $(SOURCE)
+	mkdir -p $(@D)
+	$(CC) $(CFLAGS) -o $@ -c $< $(DEPFLAGS)
+
+# Delete all object files, along with the executable file.
+clean:
+	rm -rf $(BUILDDIR)/*
+
+# Run the executable file, the application.
+run:
+	$(TARGET)
+
+# Cleans the current files, re-compiles the project, and runs it.
+reload: clean all run
