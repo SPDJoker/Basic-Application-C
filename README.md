@@ -8,13 +8,29 @@ Uses OpenGL and GLUT.
 
 ## Instructions
 
-This project is designed to be edited and run with Visual Studio Code.
+You can use anything you want to work on this project.
+However, to run it you must have access to a terminal.
 
-Install [Visual Studio Code](https://code.visualstudio.com)
+### Compiling and Building
 
-### Recommended Extensions
+To compile the project:
+```Makefile
+$ make all
+```
 
-Install these plugins for VS Code:
+To run the project:
+```Makefile
+$ make run
+```
+
+To clear the bin folder:
+```Makefile
+$ make clean
+```
+
+### Recommended Extensions for VS Code
+
+Here are the plugins I use to work on VS Code:
 
 * C/C++ Intellisense/debugging by Microsoft
 * Shader languages support by slevesque
@@ -26,19 +42,4 @@ harmless errors saying header files could not be found. If that is the
 case, then Makefile Tools removes them. However, it will not affect
 anything in the project.
 
-### Compiling and Building
-
-To compile the project:
-```
-$ make all
-```
-
-To run the project:
-```
-$ make run
-```
-
-To clear the bin folder:
-```
-$ make clean
-```
+I recommend you relaunch if you download these extensions.
