@@ -1,7 +1,0 @@
-make bin/APP --dry-run --keep-going --print-directory
-make: Entering directory `/Users/josegonzalezlopez/MakefileProjects/TestVSC'
-mkdir -p bin
-clang -Wall -Werror -Wno-deprecated-declarations -I./include/ -o bin/test.o -c source/test.c
-clang -framework OpenGL -framework GLUT -o bin/APP bin/main.o bin/test.o
-make: Leaving directory `/Users/josegonzalezlopez/MakefileProjects/TestVSC'
- 

@@ -1,9 +1,15 @@
 {
+    "env": {
+        "defaultIncludePath":[
+            "${workspaceFolder}",
+            "${workspaceFolder}/include"
+        ]
+    },
     "configurations": [
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/include"
+                "${defaultIncludePath}"
             ],
             "defines": [],
             "macFrameworkPath": [
