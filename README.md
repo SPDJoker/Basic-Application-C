@@ -29,10 +29,16 @@ anything in the project.
 ### Compiling and Building
 
 To compile the project:
-> $ make all
+'''
+$ make all
+'''
 
 To run the project:
-> $ make run
+'''
+$ make run
+'''
 
 To clear the bin folder:
-> $ make clean
+'''
+$ make clean
+'''
