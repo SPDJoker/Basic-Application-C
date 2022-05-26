@@ -1,47 +1,53 @@
 # App Information
-BUILDNAME		:= APP
+BUILD_NAME := Application
 
 # Paths
-ROOTDIR			:= .
-BUILDDIR		:= ./bin
-INCLUDEDIR		:= ./include
-SOURCEDIR		:= ./source
-
-# Compiler Settings
-CC 				:= clang
-CFLAGS1 		:= -framework OpenGL -framework GLUT
-CFLAGS2 		:= -Wall -Werror -Wno-deprecated-declarations
+BIN_DIR	:= ./bin
+INC_DIR	:= ./inc
+LIB_DIR	:= ./lib
+OBJ_DIR	:= ./obj
+SRC_DIR	:= ./src
 
 # DO NOT CHANGE ANYTHING BELOW THIS
-TARGET 			:= $(BUILDDIR)/$(BUILDNAME)
-SOURCE			:= $(SOURCEDIR)/%.c
-OBJECT			:= $(BUILDDIR)/%.o
+EXE := $(BIN_DIR)/$(BUILD_NAME)
+SRC := $(shell find $(SRC_DIR) -name "*.c")
+OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-SOURCES 		:= $(shell find $(SOURCEDIR) -name "*.c")
-OBJECTS			:= $(subst $(SOURCEDIR),$(BUILDDIR),$(SOURCES:.c=.o))
+# Compiler Settings
+CC := gcc
+CPPFLAGS := -I$(INC_DIR) -MMD -MP
+CFLAGS := -Wall# -framework OpenGL
+LDGFLAGS:= -L$(LIB_DIR)
+LDLIBS := #-lm
 
-#$(addsuffix /inc/,$(addprefix -I,$(LINKERDIR)/*))
-INCLUDES		:= -I$(INCLUDEDIR)/
+# Unix OS Variables
+RM := rm
 
-# Dependency Settings
-DEPENDENCIES		:= $(OBJECTS:.o=.d)
--include $(DEPENDENCIES)
+# Windows OS Variables
+DEL := del
 
-DEPFLAGS 		= -MMD -MF $(@:.o=.d)
+.PHONY: all clean run reload
 
-all: $(TARGET)
+all: $(EXE)
 
-$(TARGET): $(OBJECTS)
-	$(CC) $(CFLAGS1) -o $@ $^
+$(EXE): $(OBJ) | $(BIN_DIR)
+	$(CC) $(LDGFLAGS) $^ $(LDLIBS) -o $@
 
-$(OBJECT): $(SOURCE)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	mkdir -p $(@D)
-	$(CC) $(CFLAGS2) $(INCLUDES) -o $@ -c $<
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+$(BIN_DIR) $(OBJ_DIR):
+	mkdir -p $@
 
 # Delete all object files, along with the executable file.
 clean:
-	rm -rf $(BUILDDIR)/*
+	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
 
 # Run the executable file, the application.
 run:
-	$(TARGET)
+	$(EXE)
+
+reload: all run
+
+-include(OBJ:.o=.d)

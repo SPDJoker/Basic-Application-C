@@ -4,12 +4,13 @@ This is a starting point for a basic OpenGL application (WIP).
 
 Currently works on Mac.
 
-Uses OpenGL and GLUT.
+Uses OpenGL, GLFW, and Glew.
 
 ## Instructions
 
-You can use anything you want to work on this project.
-However, to run it you must have access to a terminal.
+You can use any IDE you want to work on this project.
+However, to run it you must have access to a terminal or 
+something campable of running Makefiles.
 
 ### Compiling and Building
 
@@ -18,28 +19,34 @@ To compile the project:
 $ make all
 ```
 
-To run the project:
+To run the compiled project:
 ```Makefile
 $ make run
 ```
 
-To clear the bin folder:
+To clear the output files:
 ```Makefile
 $ make clean
 ```
 
-### Recommended Extensions for VS Code
+To recompile and run:
+```Makefile
+$ make reload
+```
 
+## Recommended for VS Code
+
+### Extensions
 Here are the plugins I use to work on VS Code:
 
 * C/C++ Intellisense/debugging by Microsoft
 * Shader languages support by slevesque
-* Makefile Tools by Microsoft
 
-These extensions enable you to better edit while working on the project.
-Since you are running the project through Makefiles, you will get some
-harmless errors saying header files could not be found. If that is the
-case, then Makefile Tools removes them. However, it will not affect
-anything in the project.
+The C/C++ extension will show an error reading header
+files in the editor. However, the program still works.
 
-I recommend you relaunch if you download these extensions.
+If you would like to fix it then you have to go to
+settings and search for **browse.path** and add:
+```
+"${workspaceFolder}/inc"
+```

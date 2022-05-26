@@ -1,5 +1,3 @@
 .vscode
-
-backups
-
-bin/**
+bin
+obj
