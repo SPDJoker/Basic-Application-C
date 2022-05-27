@@ -4,7 +4,7 @@ This is a starting point for a basic OpenGL application (WIP).
 
 Currently only works on Mac.
 
-Uses OpenGL and GLAD.
+Uses GLFW and GLAD.
 
 ## Instructions
 
@@ -13,7 +13,9 @@ You can use any IDE you want to work on this project. I used
 use of it. However, to run it you just need to have access
 to a terminal or something compatible with Makefiles.
 
-| [MacOS](/doc/MacOS-Installation.md) |
+## Installations
+
+| [MacOS](/doc/MacOS-Installation.md) | Linux | Windows
 
 ### Compiling and Building
 
