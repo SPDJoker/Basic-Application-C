@@ -8,7 +8,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 int main() {
     // Initializes and configures GLFW
-    debugLogc("Initializing GLFW...", DCOLOR_GREEN);
+    debugLogc("[-] Initializing GLFW...", DCOLOR_YELLOW);
     if (!glfwInit()) {
         debugErr("Failed to initialize GLFW");
         return -1;
@@ -21,7 +21,7 @@ int main() {
 #endif
 
     // Creates the window
-    debugLogc("Creating window...", DCOLOR_GREEN);
+    debugLogc("[-] Creating window...", DCOLOR_YELLOW);
     GLFWwindow* window = glfwCreateWindow(800, 600, "Default Application", NULL, NULL);
     if (window == NULL) {
         debugErr("Failed to create window.");
@@ -32,11 +32,12 @@ int main() {
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     // Initialize GLAD
-    debugLogc("Initializing GLAD...", DCOLOR_GREEN);
+    debugLogc("[-] Initializing GLAD...", DCOLOR_YELLOW);
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         debugErr("Failed to initialize GLAD");
         return -1;
     }    
+    debugLogc("[+] Loading complete.", DCOLOR_GREEN);
 
     // Rendering Loop
     while (!glfwWindowShouldClose(window)) {
@@ -49,8 +50,9 @@ int main() {
     }
 
     // Close window and terminate use of all allocated resources
-    debugLogc("Closing window...", DCOLOR_YELLOW);
+    debugLogc("[-] Terminating window...", DCOLOR_YELLOW);
     glfwTerminate();
+    debugLogc("[+] Program terminated.", DCOLOR_GREEN);
     return 0;
 }
 
