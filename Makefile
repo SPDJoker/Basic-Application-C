@@ -15,23 +15,19 @@ OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # Compiler Settings
 CC := gcc
-CPPFLAGS := -I$(INC_DIR) -MMD -MP
-CFLAGS := -Wall# -framework OpenGL
-LDGFLAGS:= -L$(LIB_DIR)
-LDLIBS := #-lm
+CPPFLAGS := -I$(INC_DIR)/ -MMD -MP
+CFLAGS := -Wall -framework OpenGL
+LDLIBS :=  -lglfw
 
 # Unix OS Variables
 RM := rm
-
-# Windows OS Variables
-DEL := del
 
 .PHONY: all clean run reload
 
 all: $(EXE)
 
 $(EXE): $(OBJ) | $(BIN_DIR)
-	$(CC) $(LDGFLAGS) $^ $(LDLIBS) -o $@
+	$(CC) $(LDGFLAGS) $(OBJ) $(LDLIBS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	mkdir -p $(@D)
@@ -42,12 +38,13 @@ $(BIN_DIR) $(OBJ_DIR):
 
 # Delete all object files, along with the executable file.
 clean:
+
 	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
 
 # Run the executable file, the application.
 run:
 	$(EXE)
 
-reload: all run
+reload: clean all run
 
 -include(OBJ:.o=.d)

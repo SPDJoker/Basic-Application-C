@@ -2,15 +2,18 @@
 
 This is a starting point for a basic OpenGL application (WIP).
 
-Currently works on Mac.
+Currently only works on Mac.
 
-Uses OpenGL, GLFW, and Glew.
+Uses OpenGL and GLAD.
 
 ## Instructions
 
-You can use any IDE you want to work on this project.
-However, to run it you must have access to a terminal or 
-something campable of running Makefiles.
+You can use any IDE you want to work on this project. I used 
+[VSCode](https://code.visualstudio.com/) so the recommendations will be based around the 
+use of it. However, to run it you just need to have access
+to a terminal or something compatible with Makefiles.
+
+| [MacOS](/doc/MacOS-Installation.md) |
 
 ### Compiling and Building
 
@@ -24,7 +27,7 @@ To run the compiled project:
 $ make run
 ```
 
-To clear the output files:
+To clear bin/ and obj/:
 ```Makefile
 $ make clean
 ```
