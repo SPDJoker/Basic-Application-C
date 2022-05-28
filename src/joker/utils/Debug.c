@@ -1,4 +1,5 @@
 #include "joker/utils/Debug.h"
+
 #include <stdio.h>
 
 void debugLogc(const char *msg, const char *DCOLOR) {

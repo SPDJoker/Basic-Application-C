@@ -1,6 +1,10 @@
 #ifndef _JOKER_DEBUG_H_
 #define _JOKER_DEBUG_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define DCOLOR_RESET        "\x1B[0m"
 #define DCOLOR_RED          "\x1B[31m"
 #define DCOLOR_GREEN        "\x1B[32m"
@@ -13,5 +17,9 @@
 void debugLogc(const char *msg, const char *DCOLOR);
 void debugLog(const char *msg);
 void debugErr(const char *msg);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
